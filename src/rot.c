@@ -2,12 +2,12 @@
 #include "rot.h"
 
 /*
-** Apply 13 character to a string in place.
-**
+** Apply arbitrary character shift to a string in place.
+** rot("Test", 13)->
 ** Test -> Grfg
 **/
 
-int rot13(char *s){
+int rot(char *s, int rot){
   char *p, c;
   p = s;
   if(!p) return 1;
@@ -17,9 +17,12 @@ int rot13(char *s){
       continue;
     }
     c = islower(*p) ? 'a' : 'A';
-    *p = c + (*p - c + 13) % 26, stdout;
+    *p = c + (*p - c + rot) % 26, stdout;
     p++;
   }
   return 0;
 }
 
+int rot13(char *s){
+  return rot(s, 13);
+}
