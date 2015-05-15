@@ -23,5 +23,6 @@ int main(int argc,
   if(rc != 2) return 1;
   rc = rot13(input);
   if(rc) return 1;
-  return strcmp(input, expected);
+  rc = strcmp(input, expected);
+  return rc;
 }
