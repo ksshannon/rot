@@ -11,15 +11,14 @@ int main(int argc,
          char* argv[]){
   char *p;
   char  offset;
+  int rc;
 
   if(argc < 2) Usage();
 
-  p = argv[1];
-  while(*p != '\0'){
-    offset = islower(*p) ? 'a' : 'A';
-    putc(offset + ((*p++) - offset + 13) % 26, stdout);
-  }
-  printf("\n");
-  return 0;
+  p = strdup(argv[1]);
+  rc = rot13(p);
+  if(rc == 0) printf("%s\n", p);
+  free(p);
+  return rc;
 }
 
