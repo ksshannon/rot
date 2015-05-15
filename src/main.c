@@ -1,7 +1,5 @@
 
-#include <ctype.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include "rot.h"
 
 void Usage(){
   printf("rot input\n");
