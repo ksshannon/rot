@@ -17,7 +17,7 @@ int main(int argc,
 
   p = argv[1];
   while(*p != '\0'){
-    putc('a' + (tolower((*p++)) + 13) % 26, stdout);
+    putc('a' + (tolower((*p++)) - 'a' + 13) % 26, stdout);
   }
   printf("\n");
   return 0;
