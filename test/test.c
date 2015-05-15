@@ -36,7 +36,7 @@ int main(int argc,
   if(!expected) return 1;
   if(expected[strlen(expected)-1] == '\n')
     expected[strlen(expected)-1] = '\0';
-  rc = rot13(input);
+  rc = rot(input, 13);
   if(rc) return 1;
   rc = strcmp(input, expected);
   return rc;
