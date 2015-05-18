@@ -1,7 +1,7 @@
 
 #include "rot.h"
 
-void Usage(){
+void usage(){
   printf("rot [--shift n] input\n");
   printf("\n");
   exit(1);
@@ -14,7 +14,7 @@ int main(int argc,
   int   shift = 13;
   int   i, rc;
 
-  if(argc < 2) Usage();
+  if(argc < 2) usage();
 
   i = 1;
   while(i < argc){
@@ -24,7 +24,7 @@ int main(int argc,
       p = argv[i];
     i++;
   }
-  if(!p) Usage();
+  if(!p) usage();
 
   p = strdup(p);
   rc = rot(p, shift);
