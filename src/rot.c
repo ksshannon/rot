@@ -11,6 +11,8 @@ int rot(char *s, int rot){
   char *p, c;
   p = s;
   if(!p) return 1;
+  if(rot < 0)
+    rot = 26 + rot;
   while(*p != '\0'){
     if(!isalpha(*p)){
       p++;
