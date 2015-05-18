@@ -17,7 +17,8 @@ int main(int argc,
 {
   int rc;
   FILE *fin;
-  char *input, *expected;
+  char *input, *expected, *szrot;
+  int nrot;
 
   if(argc < 2) usage();
 
@@ -25,6 +26,8 @@ int main(int argc,
   if(!input) return 1;
   expected = malloc(ROT_TEST_MAX_BUF);
   if(!expected) return 1;
+  szrot = malloc(ROT_TEST_MAX_BUF);
+  if(!szrot) return 1;
 
   fin = fopen(argv[1], "r");
   if(!fin) return 1;
@@ -36,8 +39,15 @@ int main(int argc,
   if(!expected) return 1;
   if(expected[strlen(expected)-1] == '\n')
     expected[strlen(expected)-1] = '\0';
-  rc = rot(input, 13);
-  if(rc) return 1;
-  rc = strcmp(input, expected);
+  szrot = fgets(szrot, ROT_TEST_MAX_BUF, fin);
+  if(!szrot) return 1;
+  nrot = atoi(szrot);
+  rc = rot(input, nrot);
+  if(rc == 0){
+    rc = strcmp(input, expected);
+  }
+  free(input);
+  free(expected);
+  free(szrot);
   return rc;
 }
