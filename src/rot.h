@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+int rot(char* s, int rot);
 int rot13(char* s);
 
 #endif /* ROT_H_ */
