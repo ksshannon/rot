@@ -27,8 +27,12 @@ int main(int argc,
   expected = malloc(ROT_TEST_MAX_BUF);
   if(!expected) return 1;
   szrot = malloc(ROT_TEST_MAX_BUF);
-  if(!szrot) return 1;
-
+  if(!input || !expected || !szrot){
+    free(input);
+    free(expected);
+    free(szrot);
+    return 1;
+  }
   fin = fopen(argv[1], "r");
   if(!fin) return 1;
   input = fgets(input, ROT_TEST_MAX_BUF, fin);
