@@ -36,15 +36,24 @@ int main(int argc,
   fin = fopen(argv[1], "r");
   if(!fin) return 1;
   input = fgets(input, ROT_TEST_MAX_BUF, fin);
-  if(!input) return 1;
+  if(!input){
+    fclose(fin);
+    return 1;
+  }
   if(input[strlen(input)-1] == '\n')
     input[strlen(input)-1] = '\0';
   expected = fgets(expected, ROT_TEST_MAX_BUF, fin);
-  if(!expected) return 1;
+  if(!expected){
+    fclose(fin);
+    return 1;
+  }
   if(expected[strlen(expected)-1] == '\n')
     expected[strlen(expected)-1] = '\0';
   szrot = fgets(szrot, ROT_TEST_MAX_BUF, fin);
-  if(!szrot) return 1;
+  if(!szrot){
+    fclose(fin);
+    return 1;
+  }
   nrot = atoi(szrot);
   rc = rot(input, nrot);
   if(rc == 0){
@@ -53,5 +62,6 @@ int main(int argc,
   free(input);
   free(expected);
   free(szrot);
+  fclose(fin);
   return rc;
 }
