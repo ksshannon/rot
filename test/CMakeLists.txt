@@ -3,7 +3,8 @@ cmake_minimum_required(VERSION 2.6)
 
 include_directories(${PROJECT_SOURCE_DIR}/src)
 
-add_executable(rottest test.c ${PROJECT_SOURCE_DIR}/src/rot.c)
+add_executable(rottest test.c)
+target_link_libraries(rottest rot)
 
 file(GLOB test_cases "*.test")
 
