@@ -11,7 +11,7 @@ int rot(char *s, int rot){
   char *p, c;
   p = s;
   if(!p) return 1;
-  if(rot > 26)
+  if(abs(rot) > 26)
     rot = rot % 26;
   if(rot < 0)
     rot = 26 + rot;
