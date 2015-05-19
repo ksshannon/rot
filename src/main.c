@@ -18,7 +18,7 @@ int main(int argc,
 
   i = 1;
   while(i < argc){
-    if(strequal(argv[i], "--shift"))
+    if(strequal(argv[i], "--shift") && i < argc - 2)
       shift = atoi(argv[++i]);
     else if(p == NULL)
       p = argv[i];
