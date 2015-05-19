@@ -5,23 +5,23 @@
 ** Apply arbitrary character shift to a string in place.
 ** rot("Test", 13)->
 ** Test -> Grfg
+**
+** return 0 on success, non-zero otherwise.
 **/
 
 int rot(char *s, int rot){
   char *p, c;
   p = s;
   if(!p) return 1;
-  if(abs(rot) > 26)
-    rot = rot % 26;
-  if(rot < 0)
-    rot = 26 + rot;
+  if(abs(rot) > 26) rot = rot % 26;
+  if(rot < 0) rot = 26 + rot;
   while(*p != '\0'){
     if(!isalpha(*p)){
       p++;
       continue;
     }
     c = islower(*p) ? 'a' : 'A';
-    *p = c + (*p - c + rot) % 26, stdout;
+    *p = c + (*p - c + rot) % 26;
     p++;
   }
   return 0;
