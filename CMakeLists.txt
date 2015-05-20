@@ -7,6 +7,9 @@ if(NOT MSVC)
 endif(NOT MSVC)
 
 add_subdirectory(src)
+
+add_subdirectory(ext)
+
 include(CTest)
 if(BUILD_TESTING)
   add_subdirectory(test)
