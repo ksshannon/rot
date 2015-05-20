@@ -1,6 +1,6 @@
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/test.lua
-  ${CMAKE_CURRENT_BINARY_DIR} COPY_ONLY)
+               ${CMAKE_CURRENT_BINARY_DIR})
 
 file(GLOB test_cases "${PROJECT_SOURCE_DIR}/test/*.test")
 
