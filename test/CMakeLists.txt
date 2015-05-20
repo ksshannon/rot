@@ -13,3 +13,8 @@ foreach(case ${test_cases})
   add_test(${base} rottest ${case})
 endforeach(case ${test_cases})
 
+if(BUILD_LUA_BINDINGS)
+  message("Building lua tests...")
+  add_subdirectory(lua)
+endif(BUILD_LUA_BINDINGS)
+
