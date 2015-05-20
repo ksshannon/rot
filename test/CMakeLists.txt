@@ -14,7 +14,6 @@ foreach(case ${test_cases})
 endforeach(case ${test_cases})
 
 if(BUILD_LUA_BINDINGS)
-  message("Building lua tests...")
   add_subdirectory(lua)
 endif(BUILD_LUA_BINDINGS)
 
