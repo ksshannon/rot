@@ -18,10 +18,16 @@ int main(int argc,
 
   i = 1;
   while(i < argc){
-    if(strequal(argv[i], "--shift") && i < argc - 2)
-      shift = atoi(argv[++i]);
+    if(strequal(argv[i], "--shift")){
+      if(i < argc - 2)
+        shift = atoi(argv[++i]);
+      else
+        usage();
+    }
     else if(p == NULL)
       p = argv[i];
+    else
+      usage();
     i++;
   }
   if(!p) usage();
