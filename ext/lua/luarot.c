@@ -11,13 +11,13 @@ static int l_rot(lua_State *L){
   int rc, r, n;
   const char *s;
   n = lua_gettop(L);
-  if(!luaL_checkstring(L, 1, &s)){
+  if(!lua_checkstring(L, 1, &s)){
     lua_pushstring(L, "Invalid argument");
     lua_error(L);
   }
   s = lua_tostring(L, 1);
   r = 13;
-  if(nArgs > 1){
+  if(n > 1){
     if(!luaL_isnumber(L,2)){
       lua_pushstring(L, "Invalid argument");
       lua_error(L);
@@ -34,4 +34,9 @@ static int l_rot(lua_State *L){
   free(p);
   return 1;
 }
+
+static const luaL_reg rotlib[] = {
+    {"rotate", l_rot},
+    {NULL, NULL}
+};
 
