@@ -9,3 +9,4 @@ set(CMAKE_C_FLAGS ${CMAKE_C_FLAGS} -fPIC)
 
 add_library(rotate SHARED luarot.c)
 target_link_libraries(rotate rot ${LUA_LIBRARIES})
+
