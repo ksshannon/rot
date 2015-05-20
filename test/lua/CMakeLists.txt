@@ -2,9 +2,6 @@
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/test.lua
   ${CMAKE_CURRENT_BINARY_DIR} COPY_ONLY)
 
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/CTestCustom.cmake
-               ${CMAKE_BINARY_DIR}CTestCustom.cmake COPY_ONLY)
-
 file(GLOB test_cases "${PROJECT_SOURCE_DIR}/test/*.test")
 
 foreach(case ${test_cases})
