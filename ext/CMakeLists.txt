@@ -1,7 +1,7 @@
 
-option(BUILD_LUA_BINDING "Build bindings for lua" OFF)
+option(BUILD_LUA_BINDINGS "Build bindings for lua" OFF)
 
-if(BUILD_LUA_BINDING)
+if(BUILD_LUA_BINDINGS)
   add_subdirectory(lua)
-endif(BUILD_LUA_BINDING)
+endif(BUILD_LUA_BINDINGS)
 
