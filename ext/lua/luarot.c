@@ -56,6 +56,7 @@ static int l_rot(lua_State *L){
   rc = rot(p, (int)r);
   if(rc){
     lua_pushstring(L, "Failed to rotate.");
+    free(p); p = NULL;
     lua_error(L);
   }
   lua_pushstring(L, p);
