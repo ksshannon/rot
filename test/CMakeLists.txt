@@ -47,7 +47,29 @@ foreach(case ${test_cases})
   set_tests_properties(${base} PROPERTIES WILL_FAIL TRUE)
 endforeach(case ${test_cases})
 
+# Test coverage tests
+add_test(no_args rottest)
+set_tests_properties(no_args PROPERTIES WILL_FAIL TRUE)
+
+
 if(BUILD_LUA_BINDINGS)
   add_subdirectory(lua)
 endif(BUILD_LUA_BINDINGS)
+
+if(BUILD_COVERAGE)
+  add_custom_target(coverage lcov --directory ${CMAKE_BINARY_DIR}
+                                  --zerocounters
+                    COMMAND make test
+                    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/test
+                    COMMAND pwd
+                    COMMAND lcov --directory ${CMAKE_BINARY_DIR}/src
+                                 --directory ${CMAKE_BINARY_DIR}/test
+                                 --capture
+                                 --output-file rotcov.info
+                    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/test
+                    COMMAND  genhtml rotcov.info
+                    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/test
+                    COMMAND  firefox index.html
+                    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/test)
+endif(BUILD_COVERAGE)
 
