@@ -10,6 +10,7 @@ void usage(){
 int main(int argc,
          char* argv[]){
   char *p = NULL;
+  char *s = NULL;
   char  offset;
   int   shift = 13;
   int   i, rc;
@@ -24,16 +25,16 @@ int main(int argc,
       else
         usage();
     }
-    else if(p == NULL)
-      p = argv[i];
+    else if(s == NULL)
+      s = argv[i];
     else
       usage();
     i++;
   }
-  if(!p) usage();
+  if(!s) usage();
 
-  p = malloc(strlen(p) + 1);
-  strcpy(p, p);
+  p = malloc(strlen(s) + 1);
+  strcpy(s, p);
   rc = rot(p, shift);
   if(rc == 0) printf("%s\n", p);
   free(p);
