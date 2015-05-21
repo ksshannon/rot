@@ -34,7 +34,7 @@ int main(int argc,
   if(!s) usage();
 
   p = malloc(strlen(s) + 1);
-  strcpy(s, p);
+  strcpy(p, s);
   rc = rot(p, shift);
   if(rc == 0) printf("%s\n", p);
   free(p);
