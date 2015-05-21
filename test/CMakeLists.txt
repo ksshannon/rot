@@ -39,6 +39,14 @@ foreach(case ${test_cases})
   add_test(${base} rottest ${case})
 endforeach(case ${test_cases})
 
+# Make sure test app fails properly
+file(GLOB test_cases "*line.test")
+
+foreach(case ${test_cases})
+  get_filename_component(base ${case} NAME_WE)
+  set_tests_properties(${base} PROPERTIES WILL_FAIL TRUE)
+endforeach(case ${test_cases})
+
 if(BUILD_LUA_BINDINGS)
   add_subdirectory(lua)
 endif(BUILD_LUA_BINDINGS)
