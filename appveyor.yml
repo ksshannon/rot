@@ -1,0 +1,7 @@
+
+install:
+  '"C:\Program Files\Microsoft SDK\Windows\v7.1\SetEnv.cmd /x64"'
+
+cmake -G "NMake Makefiles" -DBUILD_TESTING=ON -DCMAKE_BUILD_TYPE=debug
+nmake
+nmake test
