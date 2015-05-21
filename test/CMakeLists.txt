@@ -47,6 +47,8 @@ foreach(case ${test_cases})
   set_tests_properties(${base} PROPERTIES WILL_FAIL TRUE)
 endforeach(case ${test_cases})
 
+add_test(app1 ${CMAKE_BINARY_DIR}/src/rot kyle)
+
 if(BUILD_LUA_BINDINGS)
   add_subdirectory(lua)
 endif(BUILD_LUA_BINDINGS)
