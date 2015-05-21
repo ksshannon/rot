@@ -30,7 +30,7 @@ cmake_minimum_required(VERSION 2.6)
 project(rot)
 
 if(NOT MSVC)
-  set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} -Werror)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -ansi")
 endif(NOT MSVC)
 
 add_subdirectory(src)
