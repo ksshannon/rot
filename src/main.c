@@ -32,7 +32,8 @@ int main(int argc,
   }
   if(!p) usage();
 
-  p = strdup(p);
+  p = malloc(strlen(p) + 1);
+  strcpy(p, p);
   rc = rot(p, shift);
   if(rc == 0) printf("%s\n", p);
   free(p);
