@@ -51,7 +51,8 @@ static int l_rot(lua_State *L){
     }
     r = lua_tonumber(L, 2);
   }
-  p = strdup(s);
+  p = malloc(strlen(s) + 1);
+  strcpy(p, s);
   rc = rot(p, (int)r);
   if(rc){
     lua_pushstring(L, "Failed to rotate.");
