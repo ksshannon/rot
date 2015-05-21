@@ -1,0 +1,2 @@
+
+script: cmake -DBUILD_TESTING -DBUILD_LUA_BINDINGS && make && make test
