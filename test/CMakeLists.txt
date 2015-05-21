@@ -51,6 +51,9 @@ endforeach(case ${test_cases})
 add_test(no_args rottest)
 set_tests_properties(no_args PROPERTIES WILL_FAIL TRUE)
 
+#add_test(oom rottest ${PROJECT_SOURCE_DIR}/test/test1.test)
+#set_tests_properties(oom PROPERTIES ENVIRONMENT "ROT_TEST_MAX_BUF=10E100")
+#set_tests_properties(oom PROPERTIES WILL_FAIL TRUE)
 
 if(BUILD_LUA_BINDINGS)
   add_subdirectory(lua)
@@ -64,6 +67,7 @@ if(BUILD_COVERAGE)
                     COMMAND pwd
                     COMMAND lcov --directory ${CMAKE_BINARY_DIR}/src
                                  --directory ${CMAKE_BINARY_DIR}/test
+                                 --directory ${CMAKE_BINARY_DIR}/ext
                                  --capture
                                  --output-file rotcov.info
                     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/test

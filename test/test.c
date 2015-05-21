@@ -81,7 +81,10 @@ int main(int argc,
     return 1;
   }
   nrot = atoi(szrot);
-  rc = rot(input, nrot);
+  if(nrot == 13)
+    rc = rot13(input);
+  else
+    rc = rot(input, nrot);
   if(rc == 0){
     rc = strcmp(input, expected);
   }
