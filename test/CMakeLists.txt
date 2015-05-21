@@ -48,6 +48,7 @@ foreach(case ${test_cases})
 endforeach(case ${test_cases})
 
 add_test(app1 ${CMAKE_BINARY_DIR}/src/rot kyle)
+set_tests_properties(app1 PROPERTIES PASS_REGULAR_EXPRESSION "^xlyr")
 
 if(BUILD_LUA_BINDINGS)
   add_subdirectory(lua)
