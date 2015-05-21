@@ -3,4 +3,4 @@ before_install:
   - sudo apt-get update -qq
   - sudo apt-get install lua5.1 liblua-5.1-dev cmake
 
-script: cmake -DCMAKE_BUILD_TYPE=debug -DBUILD_TESTING -DBUILD_LUA_BINDINGS && make && make test
+script: cmake -DCMAKE_BUILD_TYPE=debug -DBUILD_TESTING=ON -DBUILD_LUA_BINDINGS=ON && make && make test
