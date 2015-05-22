@@ -28,29 +28,22 @@
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/test.lua
                ${CMAKE_CURRENT_BINARY_DIR})
 
-file(GLOB test_cases "${PROJECT_SOURCE_DIR}/test/*.test")
 
-foreach(case ${test_cases})
-  get_filename_component(base ${case} NAME_WE)
-  add_test(lua_${base} lua5.1 ${PROJECT_SOURCE_DIR}/test/lua/test.lua ${case})
-  set_tests_properties(lua_${base} PROPERTIES ENVIRONMENT
-                       "LUA_CPATH=${CMAKE_BINARY_DIR}/ext/lua/librotate.so")
-endforeach(case ${test_cases})
-
-file(GLOB test_cases "${PROJECT_SOURCE_DIR}/test/lua/luatest*.lua")
-
-foreach(case ${test_cases})
-  get_filename_component(base ${case} NAME_WE)
-  add_test(${base} lua5.1 ${case})
-  set_tests_properties(${base} PROPERTIES ENVIRONMENT
-                       "LUA_CPATH=${CMAKE_BINARY_DIR}/ext/lua/librotate.so")
-endforeach(case ${test_cases})
-
-# Make sure test app fails properly
-file(GLOB test_cases "${PROJECT_SOURCE_DIR}/test/*line.test")
-
-foreach(case ${test_cases})
-  get_filename_component(base ${case} NAME_WE)
-  set_tests_properties(lua_${base} PROPERTIES WILL_FAIL TRUE)
-endforeach(case ${test_cases})
+set(rotlua ${PROJECT_SOURCE_DIR}/test/lua/test.lua)
+foreach(test ${tests})
+  string(REGEX REPLACE "\\|" ";" args ${test})
+  list(GET args 0 testname)
+  list(GET args 1 input)
+  string(STRIP ${input} input)
+  list(GET args 2 shift)
+  string(STRIP ${shift} shift)
+  list(GET args 3 exp)
+  string(STRIP ${exp} exp)
+  #message(${testname} ${rotbin} --shift ${shift} \"${input}\")
+  set(luatest lua-${testname})
+  add_test(${luatest} lua5.1 ${rotlua} --shift ${shift} \"${input}\")
+  set_tests_properties(${luatest} PROPERTIES PASS_REGULAR_EXPRESSION \"${exp}\")
+  set_tests_properties(${luatest} PROPERTIES ENVIRONMENT
+                       "LUA_CPATH=${CMAKE_BINARY_DIR}/ext/lua/?.so")
+endforeach(test ${tests})
 

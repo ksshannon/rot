@@ -28,34 +28,96 @@
 cmake_minimum_required(VERSION 2.6)
 
 include_directories(${PROJECT_SOURCE_DIR}/src)
+ 
+# Autotest
+#          Test name   | input | shift | output
+set(tests "shift01-1   | abc   | 01    | bcd"
+          "shift01-2   | xyz   | 01    | yza"
+          "shift02-1   | abc   | 02    | cde"
+          "shift03-1   | abc   | 03    | def"
+          "shift04-1   | abc   | 04    | efg"
+          "shift05-1   | abc   | 05    | fgh"
+          "shift06-1   | abc   | 06    | ghi"
+          "shift07-1   | abc   | 07    | hij"
+          "shift08-1   | abc   | 08    | ijk"
+          "shift09-1   | abc   | 09    | jkl"
+          "shift10-1   | abc   | 10    | klm"
+          "shift11-1   | abc   | 11    | lmn"
+          "shift12-1   | abc   | 12    | mno"
+          "shift13-1   | abc   | 13    | nop"
+          "shift14-1   | abc   | 14    | opq"
+          "shift15-1   | abc   | 15    | pqr"
+          "shift16-1   | abc   | 16    | qrs"
+          "shift17-1   | abc   | 17    | rst"
+          "shift18-1   | abc   | 18    | stu"
+          "shift19-1   | abc   | 19    | tuv"
+          "shift20-1   | abc   | 20    | uvw"
+          "shift21-1   | abc   | 21    | vwx"
+          "shift22-1   | abc   | 22    | wxy"
+          "shift23-1   | abc   | 23    | xyz"
+          "shift24-1   | abc   | 24    | yza"
+          "shift25-1   | abc   | 25    | zab"
+          "shift26-1   | abc   | 26    | abc"
+          "shift27-1   | abc   | 27    | bcd"
+          "shift255-1  | abc   | 255   | vwx"
+          "shift-01-1  | abc   | -1    | zab"
+          "shift-09-1  | abc   | -9    | rst"
+          "shift-10-1  | abc   | -10   | qrs"
+          "shift-11-1  | abc   | -11   | pqr"
+          "shift-12-1  | abc   | -12   | opq"
+          "shift-13-1  | abc   | -13   | nop"
+          "shift-14-1  | abc   | -14   | mno"
+          "shift-15-1  | abc   | -15   | lmn"
+          "shift-16-1  | abc   | -16   | klm"
+          "shift-17-1  | abc   | -17   | jkl"
+          "shift-18-1  | abc   | -18   | ijk"
+          "shift-19-1  | abc   | -19   | hij"
+          "shift-20-1  | abc   | -20   | ghi"
+          "shift-21-1  | abc   | -21   | fgh"
+          "shift-22-1  | abc   | -22   | efg"
+          "shift-23-1  | abc   | -23   | def"
+          "shift-24-1  | abc   | -24   | cde"
+          "shift-25-1  | abc   | -25   | bcd"
+          "shift-26-1  | abc   | -26   | abc"
+          "shift-27-1  | abc   | -27   | zab"
+          "cap-1       | ABC   | 01    | BCD"
+          "num-1       | 123   | 01    | 123"
+          "lspace-1    | ' abc'| 01    | ' bcd'"
+          "word2-1     | 'a b' | 01    | 'b c'")
 
-add_executable(rottest test.c)
-target_link_libraries(rottest rot)
+set(rotbin ${CMAKE_BINARY_DIR}/src/rot)
 
-file(GLOB test_cases "*.test")
+message(STATUS "Generating tests...")
+foreach(test ${tests})
+  string(REGEX REPLACE "\\|" ";" args ${test})
+  list(GET args 0 testname)
+  list(GET args 1 input)
+  string(STRIP ${input} input)
+  list(GET args 2 shift)
+  string(STRIP ${shift} shift)
+  list(GET args 3 exp)
+  string(STRIP ${exp} exp)
+  #message(${testname} ${rotbin} --shift ${shift} \"${input}\")
+  add_test(${testname} ${rotbin} --shift ${shift} \"${input}\")
+  set_tests_properties(${testname} PROPERTIES PASS_REGULAR_EXPRESSION \"${exp}\")
+endforeach(test ${tests})
 
-foreach(case ${test_cases})
-  get_filename_component(base ${case} NAME_WE)
-  add_test(${base} rottest ${case})
-endforeach(case ${test_cases})
+# Special tests
 
-# Make sure test app fails properly
-file(GLOB test_cases "*line.test")
+add_test(noshift-1 ${rotbin} abc)
+set_tests_properties(noshift-1 PROPERTIES PASS_REGULAR_EXPRESSION "nop")
 
-foreach(case ${test_cases})
-  get_filename_component(base ${case} NAME_WE)
-  set_tests_properties(${base} PROPERTIES WILL_FAIL TRUE)
-endforeach(case ${test_cases})
+# Tests that should fail
+add_test(noargs ${rotbin})
+add_test(shift-no-input-1 ${rotbin} --shift)
+add_test(shift-no-input-2 ${rotbin} --shift 0)
 
-add_test(app1 ${CMAKE_BINARY_DIR}/src/rot kyle)
+set(failures "noargs" "shift-no-input-1" "shift-no-input-2")
 
-# Test coverage tests
-add_test(no_args rottest)
-set_tests_properties(no_args PROPERTIES WILL_FAIL TRUE)
-
-#add_test(oom rottest ${PROJECT_SOURCE_DIR}/test/test1.test)
-#set_tests_properties(oom PROPERTIES ENVIRONMENT "ROT_TEST_MAX_BUF=10E100")
-#set_tests_properties(oom PROPERTIES WILL_FAIL TRUE)
+foreach(failure ${failures})
+  message(STATUS "Adding ${failure} to expected failure list.")
+  set_tests_properties(${failure} PROPERTIES WILL_FAIL TRUE)
+endforeach(failure ${failures})
 
 if(BUILD_LUA_BINDINGS)
   add_subdirectory(lua)
