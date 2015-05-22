@@ -27,6 +27,8 @@
 
 #include "rot.h"
 
+#define rot13(s) rot(s,13)
+
 /*
 ** Apply arbitrary character shift to a string in place.
 ** rot("Test", 13)->
@@ -53,6 +55,3 @@ int rot(char *s, int rot){
   return 0;
 }
 
-int rot13(char *s){
-  return rot(s, 13);
-}
