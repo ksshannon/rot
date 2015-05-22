@@ -28,3 +28,22 @@
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/test.lua
                ${CMAKE_CURRENT_BINARY_DIR})
 
+
+set(rotlua ${PROJECT_SOURCE_DIR}/test/lua/test.lua)
+foreach(test ${tests})
+  string(REGEX REPLACE "\\|" ";" args ${test})
+  list(GET args 0 testname)
+  list(GET args 1 input)
+  string(STRIP ${input} input)
+  list(GET args 2 shift)
+  string(STRIP ${shift} shift)
+  list(GET args 3 exp)
+  string(STRIP ${exp} exp)
+  #message(${testname} ${rotbin} --shift ${shift} \"${input}\")
+  set(luatest lua-${testname})
+  add_test(${luatest} lua5.1 ${rotlua} --shift ${shift} \"${input}\")
+  set_tests_properties(${luatest} PROPERTIES PASS_REGULAR_EXPRESSION \"${exp}\")
+  set_tests_properties(${luatest} PROPERTIES ENVIRONMENT
+                       "LUA_CPATH=${CMAKE_BINARY_DIR}/ext/lua/?.so")
+endforeach(test ${tests})
+
