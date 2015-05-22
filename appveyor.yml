@@ -1,12 +1,12 @@
 
 install:
-  - "\"C:Program Files\\Microsoft SDKs\\Windows\\v7.1\\Bin\\SetEnv.cmd\" /x64"
+  "\"C:Program Files\\Microsoft SDKs\\Windows\\v7.1\\Bin\\SetEnv.cmd\" /x64"
 
 build_script:
-  - cmake -G "NMake Makefiles" -DBUILD_TESTING=ON -DCMAKE_BUILD_TYPE=debug
-  - nmake
+  cmake -G "NMake Makefiles" -DBUILD_TESTING=ON -DCMAKE_BUILD_TYPE=debug
+  nmake
 
 test:
-  - nmake test
+  nmake test
 
 
