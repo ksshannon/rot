@@ -35,7 +35,7 @@
 ** return 0 on success, non-zero otherwise.
 **/
 
-ROT_DLL int rot(char *s, int rot){
+int rot(char *s, int rot){
   char *p, c;
   p = s;
   if(!p) return 1;
@@ -53,7 +53,7 @@ ROT_DLL int rot(char *s, int rot){
   return 0;
 }
 
-ROT_DLL int rot13(char *s){
+int rot13(char *s){
   return rot(s, 13);
 }
 
