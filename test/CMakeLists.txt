@@ -155,5 +155,12 @@ if(BUILD_COVERAGE)
                     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/test
                     COMMAND  firefox index.html
                     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/test)
+  add_custom_target(postcov cp ${CMAKE_BINARY_DIR}/test/*.html
+                               ${PROJECT_SOURCE_DIR}/doc/cov
+                    COMMAND cp ${CMAKE_BINARY_DIR}/test/*.png
+                               ${PROJECT_SOURCE_DIR}/doc/cov
+                    COMMAND cp ${CMAKE_BINARY_DIR}/test/*.css
+                               ${PROJECT_SOURCE_DIR}/doc/cov)
+  add_dependencies(postcov coverage)
 endif(BUILD_COVERAGE)
 
