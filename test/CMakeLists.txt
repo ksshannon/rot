@@ -109,17 +109,58 @@ set_tests_properties(noshift-1 PROPERTIES PASS_REGULAR_EXPRESSION "nop")
 
 # Tests that should fail
 add_test(noargs ${rotbin})
+add_test(invalidarg ${rotbin} abc --noargs)
 add_test(shift-no-input-1 ${rotbin} --shift)
 add_test(shift-no-input-2 ${rotbin} --shift 0)
 
-set(failures "noargs" "shift-no-input-1" "shift-no-input-2")
+set(failures ${failures} noargs shift-no-input-1 shift-no-input-2 invalidarg)
 
 foreach(failure ${failures})
   message(STATUS "Adding ${failure} to expected failure list.")
   set_tests_properties(${failure} PROPERTIES WILL_FAIL TRUE)
 endforeach(failure ${failures})
 
+# C based tests
+file(GLOB ctests ${PROJECT_SOURCE_DIR}/test/*.c)
+foreach(ctest ${ctests})
+  get_filename_component(base ${ctest} NAME_WE)
+  add_executable(${base} ${ctest})
+  target_link_libraries(${base} rot)
+  add_test(${base} ${base})
+endforeach(ctest ${ctests})
+
+set(failures ${failures} null-1)
+
+foreach(failure ${failures})
+  message(STATUS "Adding ${failure} to expected failure list.")
+  set_tests_properties(${failure} PROPERTIES WILL_FAIL TRUE)
+endforeach(failure ${failures})
+
+
 if(BUILD_LUA_BINDINGS)
   add_subdirectory(lua)
 endif(BUILD_LUA_BINDINGS)
+
+if(BUILD_COVERAGE)
+  add_custom_target(coverage lcov --directory ${CMAKE_BINARY_DIR}
+                                  --zerocounters
+                    COMMAND make test
+                    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/test
+                    COMMAND lcov --directory ${CMAKE_BINARY_DIR}/src
+                                 --directory ${CMAKE_BINARY_DIR}/ext
+                                 --capture
+                                 --output-file rotcov.info
+                    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/test
+                    COMMAND  genhtml rotcov.info
+                    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/test
+                    COMMAND  firefox index.html
+                    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/test)
+  add_custom_target(postcov cp ${CMAKE_BINARY_DIR}/test/*.html
+                               ${PROJECT_SOURCE_DIR}/doc/cov
+                    COMMAND cp ${CMAKE_BINARY_DIR}/test/*.png
+                               ${PROJECT_SOURCE_DIR}/doc/cov
+                    COMMAND cp ${CMAKE_BINARY_DIR}/test/*.css
+                               ${PROJECT_SOURCE_DIR}/doc/cov)
+  add_dependencies(postcov coverage)
+endif(BUILD_COVERAGE)
 
