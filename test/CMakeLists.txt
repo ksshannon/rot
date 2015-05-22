@@ -122,12 +122,12 @@ endforeach(failure ${failures})
 
 # C based tests
 file(GLOB ctests ${PROJECT_SOURCE_DIR}/test/*.c)
-foreach(test ${ctests})
-  get_filename_component(base ${test} NAME_WE)
-  add_executable(${base} ${test})
+foreach(ctest ${ctests})
+  get_filename_component(base ${ctest} NAME_WE)
+  add_executable(${base} ${ctest})
   target_link_libraries(${base} rot)
   add_test(${base} ${base})
-endforeach(test ${ctests})
+endforeach(ctest ${ctests})
 
 set(failures ${failures} null-1)
 
