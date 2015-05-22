@@ -109,10 +109,11 @@ set_tests_properties(noshift-1 PROPERTIES PASS_REGULAR_EXPRESSION "nop")
 
 # Tests that should fail
 add_test(noargs ${rotbin})
+add_test(invalidarg ${rotbin} abc --noargs)
 add_test(shift-no-input-1 ${rotbin} --shift)
 add_test(shift-no-input-2 ${rotbin} --shift 0)
 
-set(failures "noargs" "shift-no-input-1" "shift-no-input-2")
+set(failures noargs shift-no-input-1 shift-no-input-2 invalidarg)
 
 foreach(failure ${failures})
   message(STATUS "Adding ${failure} to expected failure list.")
@@ -128,9 +129,7 @@ if(BUILD_COVERAGE)
                                   --zerocounters
                     COMMAND make test
                     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/test
-                    COMMAND pwd
                     COMMAND lcov --directory ${CMAKE_BINARY_DIR}/src
-                                 --directory ${CMAKE_BINARY_DIR}/test
                                  --directory ${CMAKE_BINARY_DIR}/ext
                                  --capture
                                  --output-file rotcov.info

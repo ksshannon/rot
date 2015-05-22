@@ -28,7 +28,6 @@
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/test.lua
                ${CMAKE_CURRENT_BINARY_DIR})
 
-
 set(rotlua ${PROJECT_SOURCE_DIR}/test/lua/test.lua)
 foreach(test ${tests})
   string(REGEX REPLACE "\\|" ";" args ${test})
@@ -46,4 +45,9 @@ foreach(test ${tests})
   set_tests_properties(${luatest} PROPERTIES ENVIRONMENT
                        "LUA_CPATH=${CMAKE_BINARY_DIR}/ext/lua/?.so")
 endforeach(test ${tests})
+
+add_test(lua-invalidarg-1 lua5.1 ${PROJECT_SOURCE_DIR}/test/lua/invalidarg-1.lua)
+add_test(lua-invalidarg-2 lua5.1 ${PROJECT_SOURCE_DIR}/test/lua/invalidarg-2.lua)
+set_tests_properties(lua-invalidarg-1 PROPERTIES WILL_FAIL TRUE)
+set_tests_properties(lua-invalidarg-2 PROPERTIES WILL_FAIL TRUE)
 
