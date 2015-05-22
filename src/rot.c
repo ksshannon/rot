@@ -55,7 +55,3 @@ ROT_DLL int rot(char *s, int rot){
   return 0;
 }
 
-ROT_DLL int rot13(char *s){
-  return rot(s, 13);
-}
-
