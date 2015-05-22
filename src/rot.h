@@ -57,7 +57,6 @@
 ROT_C_START
 
 ROT_DLL int rot(char* s, int rot);
-ROT_DLL int rot13(char* s);
 
 ROT_C_END
 

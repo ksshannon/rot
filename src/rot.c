@@ -27,6 +27,8 @@
 
 #include "rot.h"
 
+#define rot13(s) rot(s,13)
+
 /*
 ** Apply arbitrary character shift to a string in place.
 ** rot("Test", 13)->
