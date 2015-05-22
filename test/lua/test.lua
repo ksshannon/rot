@@ -28,28 +28,28 @@
 require("librotate")
 
 function usage()
-  print("test file\n");
-  print("\n");
-  print("where the file contains two strings, input and expected result\n");
+  print("test [--shift n] input");
   os.exit(1);
 end
 
+i = 1
+s = nil
+shift = 13
 
--- Read arg[1] as the file
-fin = io.open(arg[1])
-if fin == nil then
-  os.exit(1)
+while i <= #arg do
+  print(i,arg[i])
+  if arg[i] == "--shift" then
+    i = i + 1
+    shift = arg[i]
+  elseif s == nil then
+    s = arg[i]
+  else
+    usage()
+  end
+  i = i + 1
 end
 
-i = fin:read("*line")
-e = fin:read("*line")
-n = fin:read("*line")
-fin:close()
+if s == nil then usage() end
 
-r = rotate(i,n)
-
-if r ~= e then
-  os.exit(1)
-end
-os.exit(0)
+print(rotate(s,shift))
 

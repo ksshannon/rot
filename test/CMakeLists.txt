@@ -89,6 +89,7 @@ set(tests "shift01-1   | abc   | 01    | bcd"
           "word2-1     | 'a b' | 01    | 'b c'")
 
 set(rotbin ${CMAKE_BINARY_DIR}/src/rot)
+set(rotlua ${PROJECT_SOURCE_DIR}/test/lua/test.lua)
 
 message(STATUS "Generating tests...")
 foreach(test ${tests})
@@ -100,9 +101,23 @@ foreach(test ${tests})
   string(STRIP ${shift} shift)
   list(GET args 3 exp)
   string(STRIP ${exp} exp)
+  #message(${testname} ${rotbin} --shift ${shift} \"${input}\")
   add_test(${testname} ${rotbin} --shift ${shift} \"${input}\")
   set_tests_properties(${testname} PROPERTIES PASS_REGULAR_EXPRESSION \"${exp}\")
+  if(BUILD_LUA_BINDINGS)
+    set(luatest lua-${testname})
+    add_test(${luatest} lua5.1 ${rotlua} --shift ${shift} \"${input}\")
+    set_tests_properties(${luatest} PROPERTIES PASS_REGULAR_EXPRESSION \"${exp}\")
+    set_tests_properties(${luatest} PROPERTIES ENVIRONMENT
+                         "LUA_CPATH=${CMAKE_BINARY_DIR}/ext/lua/?.so")
+
+  endif(BUILD_LUA_BINDINGS)
 endforeach(test ${tests})
+
+# Special tests
+
+add_test(noshift-1 ${rotbin} abc)
+set_tests_properties(noshift-1 PROPERTIES PASS_REGULAR_EXPRESSION "nop")
 
 # Tests that should fail
 add_test(noargs ${rotbin})
