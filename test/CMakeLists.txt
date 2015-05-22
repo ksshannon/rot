@@ -113,12 +113,29 @@ add_test(invalidarg ${rotbin} abc --noargs)
 add_test(shift-no-input-1 ${rotbin} --shift)
 add_test(shift-no-input-2 ${rotbin} --shift 0)
 
-set(failures noargs shift-no-input-1 shift-no-input-2 invalidarg)
+set(failures ${failures} noargs shift-no-input-1 shift-no-input-2 invalidarg)
 
 foreach(failure ${failures})
   message(STATUS "Adding ${failure} to expected failure list.")
   set_tests_properties(${failure} PROPERTIES WILL_FAIL TRUE)
 endforeach(failure ${failures})
+
+# C based tests
+file(GLOB ctests ${PROJECT_SOURCE_DIR}/test/*.c)
+foreach(test ${ctests})
+  get_filename_component(base ${test} NAME_WE)
+  add_executable(${base} ${test})
+  target_link_libraries(${base} rot)
+  add_test(${base} ${base})
+endforeach(test ${ctests})
+
+set(failures ${failures} null-1)
+
+foreach(failure ${failures})
+  message(STATUS "Adding ${failure} to expected failure list.")
+  set_tests_properties(${failure} PROPERTIES WILL_FAIL TRUE)
+endforeach(failure ${failures})
+
 
 if(BUILD_LUA_BINDINGS)
   add_subdirectory(lua)
