@@ -7,6 +7,5 @@ build_script:
   - nmake
 
 test:
-  nmake test
-
+  - nmake test
 
