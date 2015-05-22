@@ -32,23 +32,21 @@ include_directories(${PROJECT_SOURCE_DIR}/src)
 add_executable(rottest test.c)
 target_link_libraries(rottest rot)
 
-file(GLOB test_cases "*.test")
+set(tests "shift13-1 | kyle | 13 | xlyr"
+          "shift13-2 | abc  | 13 | nop"
+          "shift1-1  | abc  | 1  | bcd"
+          "shift1-2  | xyz  | 1  | abc")
 
-foreach(case ${test_cases})
-  get_filename_component(base ${case} NAME_WE)
-  add_test(${base} rottest ${case})
-endforeach(case ${test_cases})
-
-# Make sure test app fails properly
-file(GLOB test_cases "*line.test")
-
-foreach(case ${test_cases})
-  get_filename_component(base ${case} NAME_WE)
-  set_tests_properties(${base} PROPERTIES WILL_FAIL TRUE)
-endforeach(case ${test_cases})
-
-add_test(app1 ${CMAKE_BINARY_DIR}/src/rot kyle)
-set_tests_properties(app1 PROPERTIES PASS_REGULAR_EXPRESSION "^xlyr")
+foreach(test ${tests})
+  string(REPLACE "|" ";" args ${test})
+  list(GET args 0 testname)
+  list(GET args 1 input)
+  list(GET args 2 shift)
+  list(GET args 3 exp)
+  #message(${testname} "${CMAKE_BINARY_DIR}/src/rot --shift ${shift} '${input}'")
+  add_test(${testname} ${CMAKE_BINARY_DIR}/src/rot "--shift ${shift} '${input}'")
+  set_tests_properties(${testname} PROPERTIES PASS_REGULAR_EXPRESSION "${exp}")
+endforeach(test ${tests})
 
 if(BUILD_LUA_BINDINGS)
   add_subdirectory(lua)
