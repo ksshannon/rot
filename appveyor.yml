@@ -6,6 +6,6 @@ build_script:
   - cmake -G "NMake Makefiles" -DBUILD_TESTING=ON -DCMAKE_BUILD_TYPE=debug
   - nmake
 
-test:
-  - ctest
+test_script:
+  - nmake test
 
