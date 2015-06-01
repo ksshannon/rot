@@ -35,20 +35,20 @@
 
 #if defined(_WIN32)
 #if defined(rot_EXPORTS)
-  #define ROT_DLL     __declspec(dllexport)
+#define ROT_DLL     __declspec(dllexport)
 #else
-  #define ROT_DLL     __declspec(dllimport)
+#define ROT_DLL     __declspec(dllimport)
 #endif /* rot_EXPORTS */
 #else
-  #define ROT_DLL
+#define ROT_DLL
 #endif /* _WIN32 */
 
 #ifdef __cplusplus
-  #define ROT_C_START extern "C" {
-  #define ROT_C_END   }
+#define ROT_C_START extern "C" {
+#define ROT_C_END   }
 #else
-  #define ROT_C_START
-  #define ROT_C_END
+#define ROT_C_START
+#define ROT_C_END
 #endif
 
 #define strequal(a,b) strcmp(a,b)==0

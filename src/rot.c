@@ -27,6 +27,7 @@
 
 #include "rot.h"
 
+/* ROT13 definition.  Simple syntax change */
 #define rot13(s) rot(s,13)
 
 /*
@@ -37,27 +38,33 @@
 ** return 0 on success, non-zero otherwise.
 **/
 
-int rot(char *s, int rot){
-  char *p, c;
-  p = s;
-  if(!p){
-    return 1;
-  }
-  if(abs(rot) > 26){
-    rot = rot % 26;
-  }
-  if(rot < 0){
-    rot = 26 + rot;
-  }
-  while(*p != '\0'){
-    if(!isalpha(*p)){
-      p++;
-      continue;
+int rot(char *s, int rot)
+{
+    char *p, c;
+    p = s;
+    if(!p)
+    {
+      return 1;
     }
-    c = islower(*p) ? 'a' : 'A';
-    *p = c + (*p - c + rot) % 26;
-    p++;
-  }
-  return 0;
+    if(abs(rot) > 26)
+    {
+        rot = rot % 26;
+    }
+    if(rot < 0)
+    {
+        rot = 26 + rot;
+    }
+    while(*p != '\0')
+    {
+        if(!isalpha(*p))
+        {
+            p++;
+            continue;
+        }
+        c = islower(*p) ? 'a' : 'A';
+        *p = c + (*p - c + rot) % 26;
+        p++;
+    }
+    return 0;
 }
 
