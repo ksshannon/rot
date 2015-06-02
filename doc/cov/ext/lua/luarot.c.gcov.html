@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - rotcov.info - ext/lua/luarot.c</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">ext/lua</a> - luarot.c<span style="font-size: 80%;"> (source / <a href="luarot.c.func.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">rotcov.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">18</td>
+            <td class="headerCovTableEntry">25</td>
+            <td class="headerCovTableEntryLo">72.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2015-06-02</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : /*</a>
+<span class="lineNum">       2 </span>            : ** This is free and unencumbered software released into the public domain.
+<span class="lineNum">       3 </span>            : **
+<span class="lineNum">       4 </span>            : ** Anyone is free to copy, modify, publish, use, compile, sell, or
+<span class="lineNum">       5 </span>            : ** distribute this software, either in source code form or as a compiled
+<span class="lineNum">       6 </span>            : ** binary, for any purpose, commercial or non-commercial, and by any
+<span class="lineNum">       7 </span>            : ** means.
+<span class="lineNum">       8 </span>            : **
+<span class="lineNum">       9 </span>            : ** In jurisdictions that recognize copyright laws, the author or authors
+<span class="lineNum">      10 </span>            : ** of this software dedicate any and all copyright interest in the
+<span class="lineNum">      11 </span>            : ** software to the public domain. We make this dedication for the benefit
+<span class="lineNum">      12 </span>            : ** of the public at large and to the detriment of our heirs and
+<span class="lineNum">      13 </span>            : ** successors. We intend this dedication to be an overt act of
+<span class="lineNum">      14 </span>            : ** relinquishment in perpetuity of all present and future rights to this
+<span class="lineNum">      15 </span>            : ** software under copyright law.
+<span class="lineNum">      16 </span>            : **
+<span class="lineNum">      17 </span>            : ** THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,
+<span class="lineNum">      18 </span>            : ** EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+<span class="lineNum">      19 </span>            : ** MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+<span class="lineNum">      20 </span>            : ** IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+<span class="lineNum">      21 </span>            : ** OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+<span class="lineNum">      22 </span>            : ** ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+<span class="lineNum">      23 </span>            : ** OTHER DEALINGS IN THE SOFTWARE.
+<span class="lineNum">      24 </span>            : **
+<span class="lineNum">      25 </span>            : ** For more information, please refer to &lt;http://unlicense.org/&gt;
+<span class="lineNum">      26 </span>            : */
+<span class="lineNum">      27 </span>            : 
+<span class="lineNum">      28 </span>            : #define LUA_LIB
+<span class="lineNum">      29 </span>            : 
+<span class="lineNum">      30 </span>            : #include &quot;rot.h&quot;
+<span class="lineNum">      31 </span>            : #include &quot;lua.h&quot;
+<span class="lineNum">      32 </span>            : #include &quot;lualib.h&quot;
+<a name="33"><span class="lineNum">      33 </span>            : #include &quot;lauxlib.h&quot;</a>
+<span class="lineNum">      34 </span>            : 
+<span class="lineNum">      35 </span><span class="lineCov">         55 : static int l_rot(lua_State *L)</span>
+<span class="lineNum">      36 </span>            : {
+<span class="lineNum">      37 </span>            :     char *p;
+<span class="lineNum">      38 </span>            :     int rc, r, n;
+<span class="lineNum">      39 </span>            :     size_t l;
+<span class="lineNum">      40 </span>            :     const char *s;
+<span class="lineNum">      41 </span><span class="lineCov">         55 :     n = lua_gettop(L);</span>
+<span class="lineNum">      42 </span><span class="lineCov">         55 :     if(!luaL_checkstring(L, 1))</span>
+<span class="lineNum">      43 </span>            :     {
+<span class="lineNum">      44 </span><span class="lineNoCov">          0 :         lua_pushstring(L, &quot;Invalid argument&quot;);</span>
+<span class="lineNum">      45 </span><span class="lineNoCov">          0 :         lua_error(L);</span>
+<span class="lineNum">      46 </span>            :     }
+<span class="lineNum">      47 </span><span class="lineCov">         55 :     s = lua_tostring(L, 1);</span>
+<span class="lineNum">      48 </span><span class="lineCov">         55 :     r = 13;</span>
+<span class="lineNum">      49 </span><span class="lineCov">         55 :     if(n &gt; 1)</span>
+<span class="lineNum">      50 </span>            :     {
+<span class="lineNum">      51 </span><span class="lineCov">         55 :         if(!lua_isnumber(L,2))</span>
+<span class="lineNum">      52 </span>            :         {
+<span class="lineNum">      53 </span><span class="lineNoCov">          0 :           lua_pushstring(L, &quot;Invalid argument&quot;);</span>
+<span class="lineNum">      54 </span><span class="lineNoCov">          0 :           lua_error(L);</span>
+<span class="lineNum">      55 </span>            :         }
+<span class="lineNum">      56 </span><span class="lineCov">         55 :         r = lua_tonumber(L, 2);</span>
+<span class="lineNum">      57 </span>            :     }
+<span class="lineNum">      58 </span><span class="lineCov">         55 :     p = malloc(strlen(s) + 1);</span>
+<span class="lineNum">      59 </span><span class="lineCov">         55 :     strcpy(p, s);</span>
+<span class="lineNum">      60 </span><span class="lineCov">         55 :     rc = rot(p, (int)r);</span>
+<span class="lineNum">      61 </span><span class="lineCov">         55 :     if(rc)</span>
+<span class="lineNum">      62 </span>            :     {
+<span class="lineNum">      63 </span><span class="lineNoCov">          0 :         lua_pushstring(L, &quot;Failed to rotate.&quot;);</span>
+<span class="lineNum">      64 </span><span class="lineNoCov">          0 :         free(p); p = NULL;</span>
+<span class="lineNum">      65 </span><span class="lineNoCov">          0 :         lua_error(L);</span>
+<span class="lineNum">      66 </span>            :     }
+<span class="lineNum">      67 </span><span class="lineCov">         55 :     lua_pushstring(L, p);</span>
+<span class="lineNum">      68 </span><span class="lineCov">         55 :     free(p);</span>
+<span class="lineNum">      69 </span><span class="lineCov">         55 :     return 1;</span>
+<a name="70"><span class="lineNum">      70 </span>            : }</a>
+<span class="lineNum">      71 </span>            : 
+<span class="lineNum">      72 </span><span class="lineCov">         55 : int luaopen_librotate(lua_State *L)</span>
+<span class="lineNum">      73 </span>            : {
+<span class="lineNum">      74 </span><span class="lineCov">         55 :     lua_register(L, &quot;rotate&quot;, l_rot);</span>
+<span class="lineNum">      75 </span><span class="lineCov">         55 :     return 0;</span>
+<span class="lineNum">      76 </span>            : }
+<span class="lineNum">      77 </span>            : 
+<span class="lineNum">      78 </span>            : static const luaL_reg rotlib[] = {
+<span class="lineNum">      79 </span>            :     {&quot;rotate&quot;, l_rot},
+<span class="lineNum">      80 </span>            :     {NULL, NULL}
+<span class="lineNum">      81 </span>            : };
+<span class="lineNum">      82 </span>            : 
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.10</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

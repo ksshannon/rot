@@ -161,7 +161,11 @@ if(BUILD_COVERAGE)
                     COMMAND cp ${CMAKE_BINARY_DIR}/test/*.png
                                ${PROJECT_SOURCE_DIR}/doc/cov
                     COMMAND cp ${CMAKE_BINARY_DIR}/test/*.css
-                               ${PROJECT_SOURCE_DIR}/doc/cov)
+                               ${PROJECT_SOURCE_DIR}/doc/cov
+                    COMMAND cp ${CMAKE_BINARY_DIR}/test/src/*.html
+                               ${PROJECT_SOURCE_DIR}/doc/cov/src
+                    COMMAND cp ${CMAKE_BINARY_DIR}/test/ext/lua/*.html
+                               ${PROJECT_SOURCE_DIR}/doc/cov/ext/lua)
   add_dependencies(postcov coverage)
 endif(BUILD_COVERAGE)
 
