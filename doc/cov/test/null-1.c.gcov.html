@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - rotcov.info - src/rot.c</title>
+  <title>LCOV - rotcov.info - test/null-1.c</title>
   <link rel="stylesheet" type="text/css" href="../gcov.css">
 </head>
 
@@ -19,7 +19,7 @@
         <table cellpadding=1 border=0 width="100%">
           <tr>
             <td width="10%" class="headerItem">Current view:</td>
-            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">src</a> - rot.c<span style="font-size: 80%;"> (source / <a href="rot.c.func.html">functions</a>)</span></td>
+            <td width="35%" class="headerValue"><a href="../index.html">top level</a> - <a href="index.html">test</a> - null-1.c<span style="font-size: 80%;"> (source / <a href="null-1.c.func.html">functions</a>)</span></td>
             <td width="5%"></td>
             <td width="15%"></td>
             <td width="10%" class="headerCovTableHead">Hit</td>
@@ -31,8 +31,8 @@
             <td class="headerValue">rotcov.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">16</td>
-            <td class="headerCovTableEntry">16</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntry">2</td>
             <td class="headerCovTableEntryHi">100.0 %</td>
           </tr>
           <tr>
@@ -87,49 +87,13 @@
 <span class="lineNum">      25 </span>            : ** For more information, please refer to &lt;http://unlicense.org/&gt;
 <span class="lineNum">      26 </span>            : */
 <span class="lineNum">      27 </span>            : 
-<span class="lineNum">      28 </span>            : #include &quot;rot.h&quot;
+<a name="28"><span class="lineNum">      28 </span>            : #include &quot;rot.h&quot;</a>
 <span class="lineNum">      29 </span>            : 
-<span class="lineNum">      30 </span>            : /* ROT13 definition.  Simple syntax change */
-<span class="lineNum">      31 </span>            : #define rot13(s) rot(s,13)
-<span class="lineNum">      32 </span>            : 
-<span class="lineNum">      33 </span>            : /*
-<span class="lineNum">      34 </span>            : ** Apply arbitrary character shift to a string in place.
-<span class="lineNum">      35 </span>            : ** rot(&quot;Test&quot;, 13)-&gt;
-<span class="lineNum">      36 </span>            : ** Test -&gt; Grfg
-<span class="lineNum">      37 </span>            : **
-<span class="lineNum">      38 </span>            : ** return 0 on success, non-zero otherwise.
-<a name="39"><span class="lineNum">      39 </span>            : **/</a>
-<span class="lineNum">      40 </span>            : 
-<span class="lineNum">      41 </span><span class="lineCov">        112 : int rot(char *s, int rot)</span>
-<span class="lineNum">      42 </span>            : {
-<span class="lineNum">      43 </span>            :     char *p, c;
-<span class="lineNum">      44 </span><span class="lineCov">        112 :     p = s;</span>
-<span class="lineNum">      45 </span><span class="lineCov">        112 :     if(!p)</span>
-<span class="lineNum">      46 </span>            :     {
-<span class="lineNum">      47 </span><span class="lineCov">          1 :       return 1;</span>
-<span class="lineNum">      48 </span>            :     }
-<span class="lineNum">      49 </span><span class="lineCov">        111 :     if(abs(rot) &gt; 26)</span>
-<span class="lineNum">      50 </span>            :     {
-<span class="lineNum">      51 </span><span class="lineCov">          6 :         rot = rot % 26;</span>
-<span class="lineNum">      52 </span>            :     }
-<span class="lineNum">      53 </span><span class="lineCov">        111 :     if(rot &lt; 0)</span>
-<span class="lineNum">      54 </span>            :     {
-<span class="lineNum">      55 </span><span class="lineCov">         40 :         rot = 26 + rot;</span>
-<span class="lineNum">      56 </span>            :     }
-<span class="lineNum">      57 </span><span class="lineCov">        793 :     while(*p != '\0')</span>
-<span class="lineNum">      58 </span>            :     {
-<span class="lineNum">      59 </span><span class="lineCov">        571 :         if(!isalpha(*p))</span>
-<span class="lineNum">      60 </span>            :         {
-<span class="lineNum">      61 </span><span class="lineCov">        252 :             p++;</span>
-<span class="lineNum">      62 </span><span class="lineCov">        252 :             continue;</span>
-<span class="lineNum">      63 </span>            :         }
-<span class="lineNum">      64 </span><span class="lineCov">        319 :         c = islower(*p) ? 'a' : 'A';</span>
-<span class="lineNum">      65 </span><span class="lineCov">        319 :         *p = c + (*p - c + rot) % 26;</span>
-<span class="lineNum">      66 </span><span class="lineCov">        319 :         p++;</span>
-<span class="lineNum">      67 </span>            :     }
-<span class="lineNum">      68 </span><span class="lineCov">        111 :     return 0;</span>
-<span class="lineNum">      69 </span>            : }
-<span class="lineNum">      70 </span>            : 
+<span class="lineNum">      30 </span><span class="lineCov">          1 : int main()</span>
+<span class="lineNum">      31 </span>            : {
+<span class="lineNum">      32 </span><span class="lineCov">          1 :   return rot(0, 1);</span>
+<span class="lineNum">      33 </span>            : }
+<span class="lineNum">      34 </span>            : 
 </pre>
       </td>
     </tr>

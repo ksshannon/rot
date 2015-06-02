@@ -144,6 +144,7 @@ if(BUILD_COVERAGE)
                     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/test
                     COMMAND lcov --directory ${CMAKE_BINARY_DIR}/src
                                  --directory ${CMAKE_BINARY_DIR}/ext
+                                 --directory ${CMAKE_BINARY_DIR}/test
                                  --capture
                                  --output-file rotcov.info
                     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/test
@@ -160,7 +161,9 @@ if(BUILD_COVERAGE)
                     COMMAND cp ${CMAKE_BINARY_DIR}/test/src/*.html
                                ${PROJECT_SOURCE_DIR}/doc/cov/src
                     COMMAND cp ${CMAKE_BINARY_DIR}/test/ext/lua/*.html
-                               ${PROJECT_SOURCE_DIR}/doc/cov/ext/lua)
+                               ${PROJECT_SOURCE_DIR}/doc/cov/ext/lua
+                    COMMAND cp ${CMAKE_BINARY_DIR}/test/test/*.html
+                               ${PROJECT_SOURCE_DIR}/doc/cov/test)
   add_dependencies(postcov coverage)
 endif(BUILD_COVERAGE)
 

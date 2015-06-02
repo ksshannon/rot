@@ -31,9 +31,9 @@
             <td class="headerValue">rotcov.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">28</td>
             <td class="headerCovTableEntry">29</td>
-            <td class="headerCovTableEntry">31</td>
-            <td class="headerCovTableEntryHi">93.5 %</td>
+            <td class="headerCovTableEntryHi">96.6 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
@@ -99,22 +99,19 @@
 <span class="lineNum">      37 </span>            :     }
 <span class="lineNum">      38 </span><span class="lineCov">        112 :     i++;</span>
 <span class="lineNum">      39 </span>            :   }
-<span class="lineNum">      40 </span><span class="lineCov">         56 :   if(!s){</span>
-<span class="lineNum">      41 </span><span class="lineNoCov">          0 :     usage();</span>
-<span class="lineNum">      42 </span>            :   }
-<span class="lineNum">      43 </span><span class="lineCov">         56 :   p = malloc(strlen(s) + 1);</span>
-<span class="lineNum">      44 </span><span class="lineCov">         56 :   if(!p){</span>
-<span class="lineNum">      45 </span><span class="lineNoCov">          0 :     return 1;</span>
-<span class="lineNum">      46 </span>            :   }
-<span class="lineNum">      47 </span><span class="lineCov">         56 :   strcpy(p, s);</span>
-<span class="lineNum">      48 </span><span class="lineCov">         56 :   rc = rot(p, shift);</span>
-<span class="lineNum">      49 </span><span class="lineCov">         56 :   if(rc == 0){</span>
-<span class="lineNum">      50 </span><span class="lineCov">         56 :     printf(&quot;%s\n&quot;, p);</span>
-<span class="lineNum">      51 </span>            :   }
-<span class="lineNum">      52 </span><span class="lineCov">         56 :   free(p);</span>
-<span class="lineNum">      53 </span><span class="lineCov">         56 :   return rc;</span>
-<span class="lineNum">      54 </span>            : }
-<span class="lineNum">      55 </span>            : 
+<span class="lineNum">      40 </span><span class="lineCov">         56 :   p = malloc(strlen(s) + 1);</span>
+<span class="lineNum">      41 </span><span class="lineCov">         56 :   if(!p){</span>
+<span class="lineNum">      42 </span><span class="lineNoCov">          0 :     return 1;</span>
+<span class="lineNum">      43 </span>            :   }
+<span class="lineNum">      44 </span><span class="lineCov">         56 :   strcpy(p, s);</span>
+<span class="lineNum">      45 </span><span class="lineCov">         56 :   rc = rot(p, shift);</span>
+<span class="lineNum">      46 </span><span class="lineCov">         56 :   if(rc == 0){</span>
+<span class="lineNum">      47 </span><span class="lineCov">         56 :     printf(&quot;%s\n&quot;, p);</span>
+<span class="lineNum">      48 </span>            :   }
+<span class="lineNum">      49 </span><span class="lineCov">         56 :   free(p);</span>
+<span class="lineNum">      50 </span><span class="lineCov">         56 :   return rc;</span>
+<span class="lineNum">      51 </span>            : }
+<span class="lineNum">      52 </span>            : 
 </pre>
       </td>
     </tr>
