@@ -37,9 +37,6 @@ int main(int argc,
     }
     i++;
   }
-  if(!s){
-    usage();
-  }
   p = malloc(strlen(s) + 1);
   if(!p){
     return 1;
