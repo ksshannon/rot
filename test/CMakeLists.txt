@@ -117,11 +117,6 @@ add_test(shift-no-input-2 ${rotbin} --shift 0)
 
 set(failures ${failures} noargs shift-no-input-1 shift-no-input-2 invalidarg)
 
-foreach(failure ${failures})
-  message(STATUS "Adding ${failure} to expected failure list.")
-  set_tests_properties(${failure} PROPERTIES WILL_FAIL TRUE)
-endforeach(failure ${failures})
-
 # C based tests
 file(GLOB ctests ${PROJECT_SOURCE_DIR}/test/*.c)
 foreach(ctest ${ctests})
@@ -154,7 +149,7 @@ if(BUILD_COVERAGE)
                     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/test
                     COMMAND  genhtml rotcov.info
                     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/test
-                    COMMAND  firefox index.html
+                    COMMAND  xdg-open index.html
                     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/test)
   add_custom_target(postcov cp ${CMAKE_BINARY_DIR}/test/*.html
                                ${PROJECT_SOURCE_DIR}/doc/cov
