@@ -39,20 +39,12 @@ static int l_rot(lua_State *L)
     size_t l;
     const char *s;
     n = lua_gettop(L);
-    if(!luaL_checkstring(L, 1))
-    {
-        lua_pushstring(L, "Invalid argument");
-        lua_error(L);
-    }
+    luaL_checkstring(L, 1);
     s = lua_tostring(L, 1);
     r = 13;
     if(n > 1)
     {
-        if(!lua_isnumber(L,2))
-        {
-          lua_pushstring(L, "Invalid argument");
-          lua_error(L);
-        }
+        lua_isnumber(L,2);
         r = lua_tonumber(L, 2);
     }
     p = malloc(strlen(s) + 1);
