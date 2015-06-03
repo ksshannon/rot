@@ -58,12 +58,12 @@ int rot(char *s, int rot)
     {
         if(!isalpha(*p))
         {
-            p++;
+            ++p;
             continue;
         }
         c = islower(*p) ? 'a' : 'A';
         *p = c + (*p - c + rot) % 26;
-        p++;
+        ++p;
     }
     return 0;
 }
