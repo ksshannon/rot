@@ -38,9 +38,9 @@
 ** return 0 on success, non-zero otherwise.
 **/
 
-int rot(char *s, int rot)
+int rot(unsigned char* s, int rot)
 {
-    char *p, c;
+    u8 *p, c;
     p = s;
     if(!p)
     {

@@ -29,6 +29,7 @@
 #define ROT_H_
 
 #include <ctype.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -51,12 +52,22 @@
 #define ROT_C_END
 #endif
 
+/* Explicit integer types */
+typedef uint8_t         u8;
+typedef int8_t          i8;
+typedef uint16_t        u16;
+typedef int16_t         i16;
+typedef uint32_t        u32;
+typedef int32_t         i32;
+typedef uint64_t        u64;
+typedef int64_t         i64;
+
 #define strequal(a,b) strcmp(a,b)==0
 #define strnequal(a,b,n) strncmp(a,b,n)==0
 
 ROT_C_START
 
-ROT_DLL int rot(char* s, int rot);
+ROT_DLL int rot(unsigned char* s, int rot);
 
 ROT_C_END
 
