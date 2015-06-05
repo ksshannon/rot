@@ -40,7 +40,8 @@
 
 int rot(unsigned char* s, int rot)
 {
-    u8 *p, c;
+    unsigned char *p;
+    unsigned char c;
     p = s;
     if(!p)
     {

@@ -9,11 +9,12 @@ void usage(){
 
 int main(int argc,
          char* argv[]){
-  char *p = NULL;
-  char *s = NULL;
-  char  offset;
-  int   shift = 13;
-  int   i, rc;
+  unsigned char *p = NULL;
+  unsigned char *s = NULL;
+  unsigned char  offset;
+  uint32 shift = 13;
+  uint32 i;
+  uint32 rc;
 
   if(argc < 2){
     usage();

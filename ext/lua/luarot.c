@@ -34,10 +34,11 @@
 
 static int l_rot(lua_State *L)
 {
-    i8 *p;
-    i32 rc, r, n;
-    u32 l;
-    const i8 *s;
+    unsigned char *p;
+    int32 rc;
+    int32 r;
+    int32 n;
+    const char *s;
     n = lua_gettop(L);
     luaL_checkstring(L, 1);
     s = lua_tostring(L, 1);
