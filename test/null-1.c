@@ -29,6 +29,6 @@
 
 int main()
 {
-  return rot(0, 1);
+    return rot(0, 1);
 }
 
