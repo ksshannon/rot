@@ -65,6 +65,8 @@ typedef int64_t         int64;
 #define strequal(a,b) strcmp(a,b)==0
 #define strnequal(a,b,n) strncmp(a,b,n)==0
 
+#define N_CHARS         26
+
 ROT_C_START
 
 ROT_DLL int rot(unsigned char* s, int rot);

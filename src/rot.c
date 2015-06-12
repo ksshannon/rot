@@ -47,13 +47,13 @@ int rot(unsigned char* s, int rot)
     {
       return 1;
     }
-    if(abs(rot) > 26)
+    if(abs(rot) > N_CHARS)
     {
-        rot = rot % 26;
+        rot = rot % N_CHARS;
     }
     if(rot < 0)
     {
-        rot = 26 + rot;
+        rot = N_CHARS + rot;
     }
     while(*p != '\0')
     {
@@ -63,7 +63,7 @@ int rot(unsigned char* s, int rot)
             continue;
         }
         c = islower(*p) ? 'a' : 'A';
-        *p = c + (*p - c + rot) % 26;
+        *p = c + (*p - c + rot) % N_CHARS;
         ++p;
     }
     return 0;
