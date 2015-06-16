@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2015-06-02</td>
+            <td class="headerValue">2015-06-16</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">2</td>
@@ -69,49 +69,50 @@
 <span class="lineNum">       7 </span><span class="lineCov">          4 :   exit(1);</span>
 <a name="8"><span class="lineNum">       8 </span>            : }</a>
 <span class="lineNum">       9 </span>            : 
-<span class="lineNum">      10 </span><span class="lineCov">         60 : int main(int argc,</span>
+<span class="lineNum">      10 </span><span class="lineCov">         65 : int main(int argc,</span>
 <span class="lineNum">      11 </span>            :          char* argv[]){
-<span class="lineNum">      12 </span><span class="lineCov">         60 :   char *p = NULL;</span>
-<span class="lineNum">      13 </span><span class="lineCov">         60 :   char *s = NULL;</span>
-<span class="lineNum">      14 </span>            :   char  offset;
-<span class="lineNum">      15 </span><span class="lineCov">         60 :   int   shift = 13;</span>
-<span class="lineNum">      16 </span>            :   int   i, rc;
-<span class="lineNum">      17 </span>            : 
-<span class="lineNum">      18 </span><span class="lineCov">         60 :   if(argc &lt; 2){</span>
-<span class="lineNum">      19 </span><span class="lineCov">          1 :     usage();</span>
-<span class="lineNum">      20 </span>            :   }
-<span class="lineNum">      21 </span>            : 
-<span class="lineNum">      22 </span><span class="lineCov">         59 :   i = 1;</span>
-<span class="lineNum">      23 </span><span class="lineCov">        230 :   while(i &lt; argc){</span>
-<span class="lineNum">      24 </span><span class="lineCov">        115 :     if(strequal(argv[i], &quot;--shift&quot;)){</span>
-<span class="lineNum">      25 </span><span class="lineCov">         57 :       if(i &lt; argc - 2){</span>
-<span class="lineNum">      26 </span><span class="lineCov">         55 :         shift = atoi(argv[++i]);</span>
-<span class="lineNum">      27 </span>            :       }
-<span class="lineNum">      28 </span>            :       else{
-<span class="lineNum">      29 </span><span class="lineCov">          2 :         usage();</span>
-<span class="lineNum">      30 </span>            :       }
-<span class="lineNum">      31 </span>            :     }
-<span class="lineNum">      32 </span><span class="lineCov">         58 :     else if(s == NULL){</span>
-<span class="lineNum">      33 </span><span class="lineCov">         57 :       s = argv[i];</span>
-<span class="lineNum">      34 </span>            :     }
-<span class="lineNum">      35 </span>            :     else{
-<span class="lineNum">      36 </span><span class="lineCov">          1 :       usage();</span>
-<span class="lineNum">      37 </span>            :     }
-<span class="lineNum">      38 </span><span class="lineCov">        112 :     i++;</span>
-<span class="lineNum">      39 </span>            :   }
-<span class="lineNum">      40 </span><span class="lineCov">         56 :   p = malloc(strlen(s) + 1);</span>
-<span class="lineNum">      41 </span><span class="lineCov">         56 :   if(!p){</span>
-<span class="lineNum">      42 </span><span class="lineNoCov">          0 :     return 1;</span>
-<span class="lineNum">      43 </span>            :   }
-<span class="lineNum">      44 </span><span class="lineCov">         56 :   strcpy(p, s);</span>
-<span class="lineNum">      45 </span><span class="lineCov">         56 :   rc = rot(p, shift);</span>
-<span class="lineNum">      46 </span><span class="lineCov">         56 :   if(rc == 0){</span>
-<span class="lineNum">      47 </span><span class="lineCov">         56 :     printf(&quot;%s\n&quot;, p);</span>
-<span class="lineNum">      48 </span>            :   }
-<span class="lineNum">      49 </span><span class="lineCov">         56 :   free(p);</span>
-<span class="lineNum">      50 </span><span class="lineCov">         56 :   return rc;</span>
-<span class="lineNum">      51 </span>            : }
-<span class="lineNum">      52 </span>            : 
+<span class="lineNum">      12 </span><span class="lineCov">         65 :   unsigned char *p = NULL;</span>
+<span class="lineNum">      13 </span><span class="lineCov">         65 :   unsigned char *s = NULL;</span>
+<span class="lineNum">      14 </span>            :   unsigned char  offset;
+<span class="lineNum">      15 </span><span class="lineCov">         65 :   uint32 shift = 13;</span>
+<span class="lineNum">      16 </span>            :   uint32 i;
+<span class="lineNum">      17 </span>            :   uint32 rc;
+<span class="lineNum">      18 </span>            : 
+<span class="lineNum">      19 </span><span class="lineCov">         65 :   if(argc &lt; 2){</span>
+<span class="lineNum">      20 </span><span class="lineCov">          1 :     usage();</span>
+<span class="lineNum">      21 </span>            :   }
+<span class="lineNum">      22 </span>            : 
+<span class="lineNum">      23 </span><span class="lineCov">         64 :   i = 1;</span>
+<span class="lineNum">      24 </span><span class="lineCov">        250 :   while(i &lt; argc){</span>
+<span class="lineNum">      25 </span><span class="lineCov">        125 :     if(strequal(argv[i], &quot;--shift&quot;)){</span>
+<span class="lineNum">      26 </span><span class="lineCov">         62 :       if(i &lt; argc - 2){</span>
+<span class="lineNum">      27 </span><span class="lineCov">         60 :         shift = atoi(argv[++i]);</span>
+<span class="lineNum">      28 </span>            :       }
+<span class="lineNum">      29 </span>            :       else{
+<span class="lineNum">      30 </span><span class="lineCov">          2 :         usage();</span>
+<span class="lineNum">      31 </span>            :       }
+<span class="lineNum">      32 </span>            :     }
+<span class="lineNum">      33 </span><span class="lineCov">         63 :     else if(s == NULL){</span>
+<span class="lineNum">      34 </span><span class="lineCov">         62 :       s = argv[i];</span>
+<span class="lineNum">      35 </span>            :     }
+<span class="lineNum">      36 </span>            :     else{
+<span class="lineNum">      37 </span><span class="lineCov">          1 :       usage();</span>
+<span class="lineNum">      38 </span>            :     }
+<span class="lineNum">      39 </span><span class="lineCov">        122 :     i++;</span>
+<span class="lineNum">      40 </span>            :   }
+<span class="lineNum">      41 </span><span class="lineCov">         61 :   p = malloc(strlen(s) + 1);</span>
+<span class="lineNum">      42 </span><span class="lineCov">         61 :   if(!p){</span>
+<span class="lineNum">      43 </span><span class="lineNoCov">          0 :     return 1;</span>
+<span class="lineNum">      44 </span>            :   }
+<span class="lineNum">      45 </span><span class="lineCov">         61 :   strcpy(p, s);</span>
+<span class="lineNum">      46 </span><span class="lineCov">         61 :   rc = rot(p, shift);</span>
+<span class="lineNum">      47 </span><span class="lineCov">         61 :   if(rc == 0){</span>
+<span class="lineNum">      48 </span><span class="lineCov">         61 :     printf(&quot;%s\n&quot;, p);</span>
+<span class="lineNum">      49 </span>            :   }
+<span class="lineNum">      50 </span><span class="lineCov">         61 :   free(p);</span>
+<span class="lineNum">      51 </span><span class="lineCov">         61 :   return rc;</span>
+<span class="lineNum">      52 </span>            : }
+<span class="lineNum">      53 </span>            : 
 </pre>
       </td>
     </tr>
