@@ -88,7 +88,10 @@ set(tests "shift01-1   | abc   | 01    | bcd"
           "tab-1       | '	a' | 01    | '	b'"
           "ctrl-1      | 'a' | 01    | 'b'"
           "sym-1       | '&#@a'| 01    | '&#@b'"
-          "nline-1     | '\na' | 01    | '\nb'")
+          "nline-1     | '\na' | 01    | '\nb'"
+          "spaces-1    | '   ' | 01    | '   '"
+          "none-1      | ''    | 01    | ''")
+
 
 set(rotbin ${CMAKE_BINARY_DIR}/src/rot)
 
