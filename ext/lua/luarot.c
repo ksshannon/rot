@@ -46,11 +46,9 @@ static int l_rot(lua_State *L)
     r = lua_tonumber(L, 2);
     p = malloc(strlen(s) + 1);
     strcpy(p, s);
-    if( !p )
+    if(!p)
     {
         lua_pushstring(L, "Failed to allocate for rotation.");
-        free(p);
-        p = NULL;
         lua_error(L);
     }
     rc = rot(p, (int)r);
