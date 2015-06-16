@@ -40,23 +40,20 @@ static int l_rot(lua_State *L)
     int32 n;
     const char *s;
     n = lua_gettop(L);
-    luaL_checkstring(L, 1);
-    s = lua_tostring(L, 1);
+    s = luaL_checkstring(L, 1);
     r = 13;
-    if(n > 1)
-    {
-        lua_isnumber(L,2);
-        r = lua_tonumber(L, 2);
-    }
+    lua_isnumber(L,2);
+    r = lua_tonumber(L, 2);
     p = malloc(strlen(s) + 1);
     strcpy(p, s);
-    rc = rot(p, (int)r);
-    if(rc)
+    if( !p )
     {
-        lua_pushstring(L, "Failed to rotate.");
-        free(p); p = NULL;
+        lua_pushstring(L, "Failed to allocate for rotation.");
+        free(p);
+        p = NULL;
         lua_error(L);
     }
+    rc = rot(p, (int)r);
     lua_pushstring(L, p);
     free(p);
     return 1;
