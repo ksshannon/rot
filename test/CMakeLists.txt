@@ -131,7 +131,7 @@ foreach(ctest ${ctests})
   add_test(${base} ${base})
 endforeach(ctest ${ctests})
 
-set(failures ${failures} null-1)
+set(failures ${failures} null-1 oom-1)
 
 foreach(failure ${failures})
   message(STATUS "Adding ${failure} to expected failure list.")
