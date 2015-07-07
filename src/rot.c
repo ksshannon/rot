@@ -38,10 +38,10 @@
 ** return 0 on success, non-zero otherwise.
 **/
 
-int rot(unsigned char* s, int rot)
+int rot(char* s, int rot)
 {
-    unsigned char *p;
-    unsigned char c;
+    char *p;
+    char c;
     p = s;
     if(!p)
     {

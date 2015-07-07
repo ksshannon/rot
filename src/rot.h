@@ -69,7 +69,7 @@ typedef int64_t         int64;
 
 ROT_C_START
 
-ROT_DLL int rot(unsigned char* s, int rot);
+ROT_DLL int rot(char* s, int rot);
 
 ROT_C_END
 

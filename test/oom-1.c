@@ -31,7 +31,7 @@
 #include "rot.h"
 
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#pragma GCC push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
 
 static void rot_init_hook(void);
 static void * oomalloc(size_t n, const void *f);
@@ -45,8 +45,6 @@ static void rot_init_hook(void)
 
 static void * oomalloc(size_t n, const void *f)
 {
-    (void)n;
-    (void*)f;
     return 0;
 }
 

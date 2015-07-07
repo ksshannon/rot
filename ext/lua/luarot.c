@@ -34,15 +34,12 @@
 
 static int l_rot(lua_State *L)
 {
-    unsigned char *p;
-    int32 rc;
+    char *p;
     int32 r;
-    int32 n;
     const char *s;
-    n = lua_gettop(L);
     s = luaL_checkstring(L, 1);
     r = 13;
-    lua_isnumber(L,2);
+    lua_isnumber(L, 2);
     r = lua_tonumber(L, 2);
     p = malloc(strlen(s) + 1);
     if(!p)
@@ -51,7 +48,7 @@ static int l_rot(lua_State *L)
         lua_error(L);
     }
     strcpy(p, s);
-    rc = rot(p, (int)r);
+    rot(p, (int)r);
     lua_pushstring(L, p);
     free(p);
     return 1;
