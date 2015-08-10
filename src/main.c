@@ -22,7 +22,7 @@ int main(int argc,
   i = 1;
   while(i < argc){
     if(strequal(argv[i], "--shift")){
-      if(i < argc - 2){
+      if(i < argc - 1){
         shift = atoi(argv[++i]);
       }
       else{
@@ -36,6 +36,9 @@ int main(int argc,
       usage();
     }
     i++;
+  }
+  if(!s){
+    usage();
   }
   p = malloc(strlen(s) + 1);
   if(!p){
