@@ -60,7 +60,7 @@ int luaopen_librotate(lua_State *L)
     return 0;
 }
 
-static const luaL_reg rotlib[] = {
+static const luaL_Reg rotlib[] = {
     {"rotate", l_rot},
     {NULL, NULL}
 };

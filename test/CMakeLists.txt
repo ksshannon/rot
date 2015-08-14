@@ -28,6 +28,7 @@
 cmake_minimum_required(VERSION 2.6)
 
 include_directories(${PROJECT_SOURCE_DIR}/src)
+include_directories(${PROJECT_SOURCE_DIR}/test/tool)
 
 # Autotest
 #          Test name   | input | shift | output
@@ -147,15 +148,19 @@ if(BUILD_LUA_BINDINGS)
 endif(BUILD_LUA_BINDINGS)
 
 if(BUILD_COVERAGE)
+  set(cov_dirs " --directory ${CMAKE_BINARY_DIR}/src --directory ${CMAKE_BINARY_DIR}/test")
+  if(BUILD_LUA_BINDINGS)
+    set(cov_dirs "${cov_dirs} --directory ${CMAKE_BINARY_DIR}/ext")
+  endif(BUILD_LUA_BINDINGS)
+
+  message(${cov_dirs})
+  message("COMMAND lcov ${cov_dirs} --capture --output-file rotcov.info")
+
   add_custom_target(coverage lcov --directory ${CMAKE_BINARY_DIR}
                                   --zerocounters
                     COMMAND make test
                     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/test
-                    COMMAND lcov --directory ${CMAKE_BINARY_DIR}/src
-                                 --directory ${CMAKE_BINARY_DIR}/ext
-                                 --directory ${CMAKE_BINARY_DIR}/test
-                                 --capture
-                                 --output-file rotcov.info
+                    COMMAND lcov "${cov_dirs} --capture --output-file rotcov.info"
                     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/test
                     COMMAND  genhtml rotcov.info
                     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/test
