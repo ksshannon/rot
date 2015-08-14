@@ -25,29 +25,9 @@
 ** For more information, please refer to <http://unlicense.org/>
 */
 
-#if defined(__GNUC__)
-
-#include <malloc.h>
+#include "oom.h"
 #include "rot.h"
-
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#pragma GCC diagnostic ignored "-Wunused-parameter"
-
-static void rot_init_hook(void);
-static void * oomalloc(size_t n, const void *f);
-
-void (*__MALLOC_HOOK_VOLATILE __malloc_initialize_hook)(void) = rot_init_hook;
-
-static void rot_init_hook(void)
-{
-    __malloc_hook = oomalloc;
-}
-
-static void * oomalloc(size_t n, const void *f)
-{
-    return 0;
-}
-
+#if defined(__GNUC__)
 int main()
 {
     return rot(0, 1);
