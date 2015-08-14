@@ -50,6 +50,5 @@ static void * oomalloc(size_t n, const void *f)
 }
 
 #endif /* __GNUC__ */
-
 #endif /* ROT_OOM_H_ */
 
