@@ -6,7 +6,7 @@ scm tools and scm hosting tools
 
 Unlicensed, in the public domain.  See LICENSE.
 
-git repositories are mirrors of http://marblerye.org:8080/rot
+git repositories are mirrors of http://fossil-test.boisestate.edu:8080/example-repo
 
 For testing purposes only!
 
