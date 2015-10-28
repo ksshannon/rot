@@ -88,9 +88,6 @@ set(tests "shift01-1   | abc   | 01    | bcd"
           "word2-1     | 'a b' | 01    | 'b c'"
           "tspace-1    | 'a b '| 01    | 'b c '"
           "tab-1       | '	a' | 01    | '	b'"
-          "ctrl-1      | '
-a' | 01    | '
-b'"
           "sym-1       | '&#@a'| 01    | '&#@b'"
           "nline-1     | '\na' | 01    | '\nb'"
           "spaces-1    | '   ' | 01    | '   '"
