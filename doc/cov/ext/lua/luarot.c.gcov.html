@@ -31,13 +31,13 @@
             <td class="headerValue">rotcov.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">16</td>
-            <td class="headerCovTableEntry">18</td>
-            <td class="headerCovTableEntryMed">88.9 %</td>
+            <td class="headerCovTableEntry">15</td>
+            <td class="headerCovTableEntry">17</td>
+            <td class="headerCovTableEntryMed">88.2 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2015-06-16</td>
+            <td class="headerValue">2015-12-11</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">2</td>
@@ -96,40 +96,37 @@
 <span class="lineNum">      34 </span>            : 
 <span class="lineNum">      35 </span><span class="lineCov">         60 : static int l_rot(lua_State *L)</span>
 <span class="lineNum">      36 </span>            : {
-<span class="lineNum">      37 </span>            :     unsigned char *p;
-<span class="lineNum">      38 </span>            :     int32 rc;
-<span class="lineNum">      39 </span>            :     int32 r;
-<span class="lineNum">      40 </span>            :     int32 n;
-<span class="lineNum">      41 </span>            :     const char *s;
-<span class="lineNum">      42 </span><span class="lineCov">         60 :     n = lua_gettop(L);</span>
-<span class="lineNum">      43 </span><span class="lineCov">         60 :     s = luaL_checkstring(L, 1);</span>
-<span class="lineNum">      44 </span><span class="lineCov">         60 :     r = 13;</span>
-<span class="lineNum">      45 </span><span class="lineCov">         60 :     lua_isnumber(L,2);</span>
-<span class="lineNum">      46 </span><span class="lineCov">         60 :     r = lua_tonumber(L, 2);</span>
-<span class="lineNum">      47 </span><span class="lineCov">         60 :     p = malloc(strlen(s) + 1);</span>
-<span class="lineNum">      48 </span><span class="lineCov">         60 :     strcpy(p, s);</span>
-<span class="lineNum">      49 </span><span class="lineCov">         60 :     if(!p)</span>
-<span class="lineNum">      50 </span>            :     {
-<span class="lineNum">      51 </span><span class="lineNoCov">          0 :         lua_pushstring(L, &quot;Failed to allocate for rotation.&quot;);</span>
-<span class="lineNum">      52 </span><span class="lineNoCov">          0 :         lua_error(L);</span>
-<span class="lineNum">      53 </span>            :     }
-<span class="lineNum">      54 </span><span class="lineCov">         60 :     rc = rot(p, (int)r);</span>
-<span class="lineNum">      55 </span><span class="lineCov">         60 :     lua_pushstring(L, p);</span>
-<span class="lineNum">      56 </span><span class="lineCov">         60 :     free(p);</span>
-<span class="lineNum">      57 </span><span class="lineCov">         60 :     return 1;</span>
-<a name="58"><span class="lineNum">      58 </span>            : }</a>
-<span class="lineNum">      59 </span>            : 
-<span class="lineNum">      60 </span><span class="lineCov">         60 : int luaopen_librotate(lua_State *L)</span>
-<span class="lineNum">      61 </span>            : {
-<span class="lineNum">      62 </span><span class="lineCov">         60 :     lua_register(L, &quot;rotate&quot;, l_rot);</span>
-<span class="lineNum">      63 </span><span class="lineCov">         60 :     return 0;</span>
-<span class="lineNum">      64 </span>            : }
-<span class="lineNum">      65 </span>            : 
-<span class="lineNum">      66 </span>            : static const luaL_reg rotlib[] = {
-<span class="lineNum">      67 </span>            :     {&quot;rotate&quot;, l_rot},
-<span class="lineNum">      68 </span>            :     {NULL, NULL}
-<span class="lineNum">      69 </span>            : };
-<span class="lineNum">      70 </span>            : 
+<span class="lineNum">      37 </span>            :     char *p;
+<span class="lineNum">      38 </span>            :     int32 r;
+<span class="lineNum">      39 </span>            :     const char *s;
+<span class="lineNum">      40 </span><span class="lineCov">         60 :     s = luaL_checkstring(L, 1);</span>
+<span class="lineNum">      41 </span><span class="lineCov">         60 :     r = 13;</span>
+<span class="lineNum">      42 </span><span class="lineCov">         60 :     lua_isnumber(L, 2);</span>
+<span class="lineNum">      43 </span><span class="lineCov">         60 :     r = lua_tonumber(L, 2);</span>
+<span class="lineNum">      44 </span><span class="lineCov">         60 :     p = malloc(strlen(s) + 1);</span>
+<span class="lineNum">      45 </span><span class="lineCov">         60 :     if(!p)</span>
+<span class="lineNum">      46 </span>            :     {
+<span class="lineNum">      47 </span><span class="lineNoCov">          0 :         lua_pushstring(L, &quot;Failed to allocate for rotation.&quot;);</span>
+<span class="lineNum">      48 </span><span class="lineNoCov">          0 :         lua_error(L);</span>
+<span class="lineNum">      49 </span>            :     }
+<span class="lineNum">      50 </span><span class="lineCov">         60 :     strcpy(p, s);</span>
+<span class="lineNum">      51 </span><span class="lineCov">         60 :     rot(p, (int)r);</span>
+<span class="lineNum">      52 </span><span class="lineCov">         60 :     lua_pushstring(L, p);</span>
+<span class="lineNum">      53 </span><span class="lineCov">         60 :     free(p);</span>
+<span class="lineNum">      54 </span><span class="lineCov">         60 :     return 1;</span>
+<a name="55"><span class="lineNum">      55 </span>            : }</a>
+<span class="lineNum">      56 </span>            : 
+<span class="lineNum">      57 </span><span class="lineCov">         60 : int luaopen_librotate(lua_State *L)</span>
+<span class="lineNum">      58 </span>            : {
+<span class="lineNum">      59 </span><span class="lineCov">         60 :     lua_register(L, &quot;rotate&quot;, l_rot);</span>
+<span class="lineNum">      60 </span><span class="lineCov">         60 :     return 0;</span>
+<span class="lineNum">      61 </span>            : }
+<span class="lineNum">      62 </span>            : 
+<span class="lineNum">      63 </span>            : static const luaL_Reg rotlib[] = {
+<span class="lineNum">      64 </span>            :     {&quot;rotate&quot;, l_rot},
+<span class="lineNum">      65 </span>            :     {NULL, NULL}
+<span class="lineNum">      66 </span>            : };
+<span class="lineNum">      67 </span>            : 
 </pre>
       </td>
     </tr>

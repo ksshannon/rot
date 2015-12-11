@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2015-06-16</td>
+            <td class="headerValue">2015-12-11</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">1</td>
@@ -100,10 +100,10 @@
 <span class="lineNum">      38 </span>            : ** return 0 on success, non-zero otherwise.
 <a name="39"><span class="lineNum">      39 </span>            : **/</a>
 <span class="lineNum">      40 </span>            : 
-<span class="lineNum">      41 </span><span class="lineCov">        122 : int rot(unsigned char* s, int rot)</span>
+<span class="lineNum">      41 </span><span class="lineCov">        122 : int rot(char* s, int rot)</span>
 <span class="lineNum">      42 </span>            : {
-<span class="lineNum">      43 </span>            :     unsigned char *p;
-<span class="lineNum">      44 </span>            :     unsigned char c;
+<span class="lineNum">      43 </span>            :     char *p;
+<span class="lineNum">      44 </span>            :     char c;
 <span class="lineNum">      45 </span><span class="lineCov">        122 :     p = s;</span>
 <span class="lineNum">      46 </span><span class="lineCov">        122 :     if(!p)</span>
 <span class="lineNum">      47 </span>            :     {
@@ -115,18 +115,18 @@
 <span class="lineNum">      53 </span>            :     }
 <span class="lineNum">      54 </span><span class="lineCov">        121 :     if(rot &lt; 0)</span>
 <span class="lineNum">      55 </span>            :     {
-<span class="lineNum">      56 </span><span class="lineCov">         40 :         rot = N_CHARS + rot;</span>
+<span class="lineNum">      56 </span><span class="lineCov">         42 :         rot = N_CHARS + rot;</span>
 <span class="lineNum">      57 </span>            :     }
-<span class="lineNum">      58 </span><span class="lineCov">        875 :     while(*p != '\0')</span>
+<span class="lineNum">      58 </span><span class="lineCov">        873 :     while(*p != '\0')</span>
 <span class="lineNum">      59 </span>            :     {
-<span class="lineNum">      60 </span><span class="lineCov">        633 :         if(!isalpha(*p))</span>
+<span class="lineNum">      60 </span><span class="lineCov">        631 :         if(!isalpha(*p))</span>
 <span class="lineNum">      61 </span>            :         {
-<span class="lineNum">      62 </span><span class="lineCov">        308 :             ++p;</span>
-<span class="lineNum">      63 </span><span class="lineCov">        308 :             continue;</span>
+<span class="lineNum">      62 </span><span class="lineCov">        302 :             ++p;</span>
+<span class="lineNum">      63 </span><span class="lineCov">        302 :             continue;</span>
 <span class="lineNum">      64 </span>            :         }
-<span class="lineNum">      65 </span><span class="lineCov">        325 :         c = islower(*p) ? 'a' : 'A';</span>
-<span class="lineNum">      66 </span><span class="lineCov">        325 :         *p = c + (*p - c + rot) % N_CHARS;</span>
-<span class="lineNum">      67 </span><span class="lineCov">        325 :         ++p;</span>
+<span class="lineNum">      65 </span><span class="lineCov">        329 :         c = islower(*p) ? 'a' : 'A';</span>
+<span class="lineNum">      66 </span><span class="lineCov">        329 :         *p = c + (*p - c + rot) % N_CHARS;</span>
+<span class="lineNum">      67 </span><span class="lineCov">        329 :         ++p;</span>
 <span class="lineNum">      68 </span>            :     }
 <span class="lineNum">      69 </span><span class="lineCov">        121 :     return 0;</span>
 <span class="lineNum">      70 </span>            : }
