@@ -37,7 +37,6 @@ s = nil
 shift = 13
 
 while i <= #arg do
-  print(i,arg[i])
   if arg[i] == "--shift" then
     i = i + 1
     shift = arg[i]
